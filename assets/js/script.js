@@ -1,30 +1,46 @@
 var searchInputEl = document.getElementById('search-input')
+var searchBtnEl = document.getElementById('search-btn')
 
-var APIKey = "bb77654738b6a17701b86fef59bed6f6";
-var city = "lacey"
-queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+searchBtnEl.addEventListener("click", getParams)
 
-function getApi(input) {
+
+function getParams(event){
+  event.preventDefault()
+  var city = searchInputEl.value
+  if(city === ""){
+    alert("please enter something")
+    return
+  }
+  getApi(city)
+}
+
+
+function getApi(city) {
+
+  var APIKey = "bb77654738b6a17701b86fef59bed6f6";
+  queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+
+
     fetch(queryURL)
       .then(function (response) {
-        return response.json();
+        if(!response.ok){
+          console.log("error")
+        }else{
+          return response.json();
+        }
       })
       .then(function (data) {
         console.log(data)
-        return data
       });
   }
 
-var renderCards = function(){
-    getApi(data)
-} 
+//function renderCards(event){
+ //   console.log(event)
+//} 
 
-var init = function(){
-    getApi(queryURL)
-}
 
-searchInputEl.addEventListener("submit", renderCards())
 
-init()
+
+
 
 //http://api.openweathermap.org/data/2.5/weather?q=lacey&appid=bb77654738b6a17701b86fef59bed6f6
