@@ -4,3 +4,7 @@ In this assignment I created a weather dashboard that lets the user enter in the
 
 linked to deployed application: https://gabrielwarner.github.io/module-challenge-6/
 
+
+![image](https://user-images.githubusercontent.com/98490756/177681403-9424bd9c-66a8-4e26-8c63-b4896840c26c.png)
+
+

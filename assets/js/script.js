@@ -22,7 +22,7 @@ function getParams(event) {
 function getApi(city) {
   var APIKey = "bb77654738b6a17701b86fef59bed6f6";
   queryURL =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
     "&appid=" +
     APIKey +
@@ -64,7 +64,7 @@ function renderMain(data) {
   //style
   mainEl.classList.add("main-card")
   cardCity.textContent = "City: " + cityInfo.name + cityDateFormatted;
-  cardIcon.setAttribute("src", `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
+  cardIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
   temp.textContent = "Temp: " + cityInfo.main.temp + " F";
   wind.textContent = "Wind: " + cityInfo.wind.speed + " mph";
   humidity.textContent = "Humidity: " + cityInfo.main.humidity + "%";
@@ -146,7 +146,7 @@ function renderFuture(data){
     //style
     card.setAttribute("class", "row col-1 card future-cards just")
     cardDate.textContent = moment.unix(futureDays[i].dt).format("MMM Do, YYYY")
-    cardIcon.setAttribute("src", `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
+    cardIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
     cardTemp.textContent = "Temp: " + futureDays[i].temp.day + " F"
     cardWind.textContent = "Wind: " + futureDays[i].wind_speed + " mph"
     cardHumidity.textContent = "Humidity: " + futureDays[i].humidity +"%"
@@ -162,4 +162,4 @@ function renderFuture(data){
   }
 }
 
-//http://api.openweathermap.org/data/2.5/weather?q=lacey&appid=bb77654738b6a17701b86fef59bed6f6
+
