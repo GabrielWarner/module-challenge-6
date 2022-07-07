@@ -39,11 +39,17 @@ function storeSearchHistory(){
 
 function renderSearchHistory(){
   searchHistoryEl.innerHTML = ""
+  var title = document.createElement("h3")
+  title.textContent = "Search History: "
+  searchHistoryEl.append(title)
   for (let i = 0; i < searchHistory.length; i++) {
+    var title = document.createElement("h3")
+    title.textContent = "Search History: "
     var li = document.createElement("li")
     li.textContent = searchHistory[i]
     li.setAttribute("class", 'list-group-item')
     searchHistoryEl.append(li)
+    
   }
 }
 
@@ -172,7 +178,7 @@ function renderFuture(data){
     const cardHumidity = document.createElement("p")
 
     //style
-    card.setAttribute("class", "row col-1 card future-cards just")
+    card.setAttribute("class", "col-2 card future-cards just")
     cardDate.textContent = moment.unix(futureDays[i].dt).format("MMM Do, YYYY")
     cardIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
     cardTemp.textContent = "Temp: " + futureDays[i].temp.day + " F"
