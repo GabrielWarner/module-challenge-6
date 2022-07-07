@@ -1,6 +1,5 @@
 var searchInputEl = document.getElementById("search-input");
 var searchBtnEl = document.getElementById("search-btn");
-
 var mainEl = document.getElementById("main-card");
 var fiveDayEl = document.getElementById("5-day-card");
 var searchHistoryEl = document.getElementById("search-history-card");
@@ -9,6 +8,17 @@ var cardCityEl = document.getElementById('card-city')
 
 searchBtnEl.addEventListener("click", getParams);
 
+var searchHistory = [];
+
+function init(){
+  var storedSearchHistory = JSON.parse(localStorage.getItem("city"));
+
+  if (storedSearchHistory !== null) {
+    searchHistory = storedSearchHistory;
+  }
+  renderSearchHistory()
+}
+
 function getParams(event) {
   event.preventDefault();
   var city = searchInputEl.value;
@@ -16,7 +26,25 @@ function getParams(event) {
     alert("please enter something");
     return;
   }
+  searchHistory.push(city)
+  searchInputEl.value = ""
   getApi(city);
+  renderSearchHistory()
+  storeSearchHistory()
+}
+
+function storeSearchHistory(){
+  localStorage.setItem("city", JSON.stringify(searchHistory));
+}
+
+function renderSearchHistory(){
+  searchHistoryEl.innerHTML = ""
+  for (let i = 0; i < searchHistory.length; i++) {
+    var li = document.createElement("li")
+    li.textContent = searchHistory[i]
+    li.setAttribute("class", 'list-group-item')
+    searchHistoryEl.append(li)
+  }
 }
 
 function getApi(city) {
@@ -162,4 +190,4 @@ function renderFuture(data){
   }
 }
 
-
+init()
