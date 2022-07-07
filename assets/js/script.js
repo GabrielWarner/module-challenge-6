@@ -75,7 +75,7 @@ function renderMain(data) {
   mainEl.append(temp);
   mainEl.append(wind);
   mainEl.append(humidity);
-  console.log(weatherIcon)
+  
   
 }
 
@@ -122,10 +122,44 @@ function secondAPI(data){
   cardUVI.textContent = "UV Index: " + cityUVI
   mainEl.append(cardUVI)
   console.log(cityUVI)
-  //cardCityEl.textContent(cardCityEl.textContent + cityInfo.weather[0].icon)
+  //calls function to load 5 day weather forecast
+  renderFuture(data)
 }
-//function renderCards(event){
-//   console.log(event)
-//}
+
+function renderFuture(data){
+  fiveDayEl.innerHTML=""
+  var futureDays = data.daily
+  console.log(futureDays)
+  for (let i = 0; i < 5; i++) {
+    console.log(futureDays[i].uvi)
+
+    weatherIcon = futureDays[i].weather[0].icon
+
+    //create
+    const card = document.createElement("div")
+    const cardDate = document.createElement("h3")
+    const cardIcon = document.createElement("img")
+    const cardTemp = document.createElement("p")
+    const cardWind = document.createElement("p")
+    const cardHumidity = document.createElement("p")
+
+    //style
+    card.setAttribute("class", "row card col-2")
+    cardDate.textContent = moment.unix(futureDays[i].dt).format(" MMM Do, YYYY")
+    cardIcon.setAttribute("src", `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
+    cardTemp.textContent = futureDays[i].temp.day + " F"
+    cardWind.textContent = futureDays[i].wind_speed
+    cardHumidity.textContent = futureDays[i].humidity +"%"
+    //append
+    
+    card.append(cardDate)
+    card.append(cardIcon)
+    card.append(cardTemp)
+    card.append(cardWind)
+    card.append(cardHumidity)
+    fiveDayEl.append(card)
+    console.log(weatherIcon)
+  }
+}
 
 //http://api.openweathermap.org/data/2.5/weather?q=lacey&appid=bb77654738b6a17701b86fef59bed6f6
