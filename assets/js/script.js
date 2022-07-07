@@ -144,12 +144,12 @@ function renderFuture(data){
     const cardHumidity = document.createElement("p")
 
     //style
-    card.setAttribute("class", "row card col-2")
-    cardDate.textContent = moment.unix(futureDays[i].dt).format(" MMM Do, YYYY")
+    card.setAttribute("class", "row col-1 card future-cards just")
+    cardDate.textContent = moment.unix(futureDays[i].dt).format("MMM Do, YYYY")
     cardIcon.setAttribute("src", `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
-    cardTemp.textContent = futureDays[i].temp.day + " F"
-    cardWind.textContent = futureDays[i].wind_speed
-    cardHumidity.textContent = futureDays[i].humidity +"%"
+    cardTemp.textContent = "Temp: " + futureDays[i].temp.day + " F"
+    cardWind.textContent = "Wind: " + futureDays[i].wind_speed + " mph"
+    cardHumidity.textContent = "Humidity: " + futureDays[i].humidity +"%"
     //append
     
     card.append(cardDate)
