@@ -46,21 +46,36 @@ function getApi(city) {
 function renderMain(data) {
   mainEl.innerHTML = "";
   const cityInfo = data;
+
+  //imported time in miliseconds to moment JS
   var cityDateMiliseconds = data.dt
   var cityDateFormatted = moment.unix(cityDateMiliseconds).format(" MMM Do, YYYY")
+
+  //weather icon
+  const weatherIcon = data.weather[0].icon
+
+  //create
   const cardCity = document.createElement("h2");
+  const cardIcon = document.createElement("img");
   const temp = document.createElement("p");
   const wind = document.createElement("p");
   const humidity = document.createElement("p");
-  cardCity.textContent = "City: " + cityInfo.name + cityDateFormatted;
-  temp.textContent = "Temp: " + cityInfo.main.temp;
-  wind.textContent = "Wind: " + cityInfo.wind.speed;
-  humidity.textContent = "Humidity: " + cityInfo.main.humidity;
   
+  //style
+  mainEl.classList.add("main-card")
+  cardCity.textContent = "City: " + cityInfo.name + cityDateFormatted;
+  cardIcon.setAttribute("src", `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`)
+  temp.textContent = "Temp: " + cityInfo.main.temp + " F";
+  wind.textContent = "Wind: " + cityInfo.wind.speed + " mph";
+  humidity.textContent = "Humidity: " + cityInfo.main.humidity + "%";
+  
+  //append
   mainEl.append(cardCity);
+  mainEl.append(cardIcon)
   mainEl.append(temp);
   mainEl.append(wind);
   mainEl.append(humidity);
+  console.log(weatherIcon)
   
 }
 
@@ -91,9 +106,9 @@ function getUVI(data) {
 
 //second function that will fethc UV Index and also future forecast
 function secondAPI(data){
+
   const cityUVI = data.current.uvi
-  const weatherIcon = data.current.weather[0][4]
-  const cardUVIContainer = document.getElementById
+  
   const cardUVI = document.createElement("p")
   //sets background color of UV index based on what the value is
   if(cityUVI > 0 || cityUVI < 3){

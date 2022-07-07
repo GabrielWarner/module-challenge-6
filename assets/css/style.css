@@ -1,5 +1,6 @@
 .favorable{
     background-color: green;
+    width: 15%;
 }
 
 .moderate{
@@ -9,3 +10,10 @@
 .severe{
     background-color: red;
 }
+
+.main-card{
+    background-color: grey;
+    padding: 1em;
+    font-weight: bold;
+}
+
